@@ -34,7 +34,7 @@ const priorityOptions = [
   { label: "Low", value: "low" },
 ];
 
-export default function CreateTodo() {
+export default function CreateTodo({fetchTodos}) {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -79,6 +79,7 @@ export default function CreateTodo() {
             description: description,
             priority: priority,
             dueDate: dueDate,
+            isCompleted: false,
           }
         ),
         headers: {
@@ -87,6 +88,7 @@ export default function CreateTodo() {
       }
     ).then( () => {
       alert("Todo created successfully", "success");
+      fetchTodos();
       handleClose();
     }).catch ( () => {
       alert("Something went wrong", "error");
