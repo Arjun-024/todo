@@ -4,7 +4,17 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import '@fontsource/roboto/400.css';
 
 
-function TodoList({todos}) {
+function TodoList({todos, fetchTodos}) {
+  const deleteTodo = (id) => {
+    console.log(id);
+    fetch(`https://todo-app-75ffc-default-rtdb.asia-southeast1.firebasedatabase.app/todo-app/${id}.json`, {
+      method: 'DELETE',
+    })
+    .then(() => {
+      fetchTodos();
+    })
+  }
+
   return (
     <div>
       {todos.length > 0 ? (
@@ -33,14 +43,14 @@ function TodoList({todos}) {
                       {todo.title}
                     </Typography>
                     <Typography variant="body2" component="div">
-                      {...todo.description}
+                      {todo.description} 
                     </Typography>
                   </div>
                 </div>
 
                 <div className="todo-right">
                   <div className="todo-delete">
-                    <IconButton>
+                    <IconButton onClick={() => deleteTodo(todo.id)}>
                       <DeleteIcon />
                     </IconButton>
                   </div>

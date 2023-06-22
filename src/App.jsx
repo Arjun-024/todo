@@ -30,7 +30,7 @@ function App() {
   return (
     <Container maxWidth="md">
         <CreateTodo fetchTodos={fetchTodos}/>
-        <TodoList todos={todos}/>
+        <TodoList todos={todos} fetchTodos={fetchTodos}/>
     </Container>
   )
 } 
