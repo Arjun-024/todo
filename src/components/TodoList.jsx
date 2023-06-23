@@ -16,6 +16,22 @@ function TodoList({todos, fetchTodos}) {
       alert('Todo deleted successfully', 'info');
     })
   }
+  
+  const updateTodo = (id, currState) => {
+    fetch(`https://todo-app-75ffc-default-rtdb.asia-southeast1.firebasedatabase.app/todo-app/${id}.json`, {
+      method: 'PATCH',
+      body: JSON.stringify({
+        isComplete: !currState
+      }),
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    })
+    .then(() => {
+      fetchTodos();
+      alert('Todo updated successfully', 'info');
+    })
+  }
 
   return (
     <div>
@@ -26,18 +42,10 @@ function TodoList({todos, fetchTodos}) {
               <div key={todo.id} className="todo">
                 <div className="todo-left">
                   <div className="todo-done">
-                    <Checkbox
-                      checked={todo.done}
-                      onChange={() =>
-                        setTodos((prevTodos) =>
-                          prevTodos.map((todo) =>
-                            todo.id === todo.id
-                              ? { ...todo, done: !todo.done }
-                              : todo
-                          )
-                        )
-                      }
+                    <input type="checkbox" className="checkbox-alter" 
+                    onClick={() => updateTodo(todo.id, todo.isCompleted)}
                     />
+                    
                   </div>
 
                   <div className="todo-detail">

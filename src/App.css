@@ -19,4 +19,10 @@
 .todo-left{
     display: flex;
     gap: 10px;
+    align-items: center;
+}
+
+.checkbox-alter{
+    height: 20px;
+    width: 20px;
 }
