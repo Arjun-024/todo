@@ -39,7 +39,11 @@ function TodoList({todos, fetchTodos}) {
         <div className="todos-container">
           {todos.map((todo) => {
             return (
-              <div key={todo.id} className="todo">
+              <div key={todo.id} className={
+                todo.priority === 'high' ? 'todo priority-high' :
+                todo.priority === 'medium' ? 'todo priority-medium' :
+                todo.priority === 'low' ? 'todo priority-low' : 'todo'
+              }>
                 <div className="todo-left">
                   <div className="todo-done">
                     <input type="checkbox" className="checkbox-alter" 

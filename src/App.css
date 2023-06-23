@@ -26,3 +26,15 @@
     height: 20px;
     width: 20px;
 }
+
+.priority-high{
+    border-left: 4px solid red
+}
+
+.priority-medium{
+    border-left: 4px solid orange
+}
+
+.priority-low{
+    border-left: 4px solid #ccc(240, 240, 232)
+}
